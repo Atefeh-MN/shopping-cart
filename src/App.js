@@ -1,11 +1,18 @@
-
+import {
+  Routes, Route
+} from "react-router-dom";
 import './App.css';
+import Layout from "./layout/Layout";
+import Home from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="App">
-      start new project
-       </div>
+    <Layout>
+      <Routes>
+        <Route path='/' exact element={<Home/>}/>
+      </Routes>
+    </Layout>
+
   );
 }
 

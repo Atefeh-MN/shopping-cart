@@ -1,0 +1,28 @@
+.mainNav{
+    width: 100%;
+    background-color:#e9d5ff ;
+    height: 4.5rem;
+}
+.mainNav nav,
+.mainNav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.mainNav ul li{
+margin:0 1rem;
+font-size: 2em;
+}
+.mainNav a{
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    color: #c084fc;
+}
+.mainNav a:hover,
+.activeLink{
+    color: #7e22ce;
+    background: #fff;
+}
