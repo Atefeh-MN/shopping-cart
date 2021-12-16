@@ -8,3 +8,49 @@ body{
   background: #f6f6f6;
   font-size: 10px;
 }
+.container{
+  display: flex;
+  justify-content: center;
+}
+.productList{
+  display: flex;
+  margin-top: 50px ;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  grid-column-gap:5rem;
+  grid-row-gap:5rem ;
+  border-radius: 5px;
+   max-width: 1170px;
+  width: 90vw;
+}
+.product{
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color:#ccfbf1;
+}
+.productImg img{
+width: 100%;
+height: auto;
+
+}
+.productDesc{
+padding: 10px;
+display: flex;
+justify-content: space-between;
+}
+.btn{
+  padding: 5px 10px;
+  background-color: #ccfbf1;
+  color: #0d9488;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+.primry{
+  color: #ccfbf1;
+  background-color: #0d9488;
+}
