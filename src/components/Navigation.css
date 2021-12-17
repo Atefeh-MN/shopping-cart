@@ -1,9 +1,18 @@
 .mainNav{
     width: 100%;
     background-color:#ccfbf1 ;
-    height: 4.5rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.mainNav nav,
+.mainNav nav{
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    max-width: 1170px;
+
+}
 .mainNav ul {
     display: flex;
     justify-content: center;
@@ -11,8 +20,8 @@
     height: 100%;
 }
 .mainNav ul li{
-margin:0 1rem;
-font-size: 2em;
+margin:0 0.3rem;
+font-size: 1.6em;
 }
 .mainNav a{
     text-decoration: none;
@@ -22,7 +31,32 @@ font-size: 2em;
     color: #2dd4bf;
 }
 .mainNav a:hover,
-.activeLink{
+.activeLink,.activeBar{
     color: #0d9488;
     background: #fff;
+}
+.mainNav .Bar li{
+    position: relative;
+     margin-left: 0.3em;
+     display: flex;
+     
+}
+.mainNav .Bar a{
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+    color: #2dd4bf;
+    border-radius: 50%;
+    font-size: 1.4em;
+
+   
+}
+.mainNav .Bar a span{
+position: absolute;
+top: 0;
+right: -5px;
+display: flex;
+font-size: 0.8em;
 }
