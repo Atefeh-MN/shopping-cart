@@ -46,18 +46,15 @@ const CartPage = () => {
                         
                     </div>
                     <div>
-                        <p>$ {item.price}</p>
+                        <p>$ {item.offPrice}</p>
                     </div>
                     <div>
-                        <h2>$ {item.price * item.quantity}</h2>
+                        <h2>$ {item.offPrice * item.quantity}</h2>
                     </div>
                     
                  </div>))}
             </section>
-                    <section className="cartSummry">
-                        <h1>Cart Summry</h1>
-                        <h2>Total Price {total}</h2>
-            </section>
+                   <CartSummry total={total} cart={cart}/>
                 </section>
                 </section>
         </main>
@@ -65,3 +62,25 @@ const CartPage = () => {
 }
  
 export default CartPage;
+ 
+const CartSummry = ({ total, cart }) => {
+
+    const originalTotalPrice = cart.length ? cart.reduce((acc, curr) => acc + curr.price * curr.quantity , 0) : 0;
+    
+    return( <section className="cartSummry">
+                <h1>Cart Summry</h1>
+                <div className="summryItem">
+                <p> cart Total</p>
+                <p>{originalTotalPrice} $</p>
+        </div>
+        <div className="summryItem">
+           <p>cart discount</p>
+           <p>{originalTotalPrice - total} $</p> 
+        </div>
+        <div className="summryItem net">
+            <p> net price</p>
+                <p>{total} $</p>
+        </div>
+        <button className="btn primry">Continue</button>
+            </section>)
+}

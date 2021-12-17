@@ -1,5 +1,5 @@
 const removeProduct = (state, payload) => {
-    let totalPrice = state.total -payload.price;
+    let totalPrice = state.total -payload.offPrice;
     const updatedCart = [...state.cart]
     const index = updatedCart.findIndex((item) => item.id ===payload.id);
     const updatedItem = { ...updatedCart[index] };
@@ -15,7 +15,7 @@ const removeProduct = (state, payload) => {
 }
 
 const addProduct = (state, payload) => {
-    let totalPrice = state.total + payload.price;
+    let totalPrice = state.total + payload.offPrice;
 
     const updatedCart = [...state.cart];
     const index = updatedCart.findIndex((item) => item.id === payload.id);

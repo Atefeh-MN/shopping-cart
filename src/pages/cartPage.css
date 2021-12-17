@@ -70,5 +70,18 @@ width: 100%;
      padding: 1rem;
      width: 30%;
      margin-left: 1rem;
+     font-size: 1.5rem;
 
+}
+.cartSummry h1{
+    margin-bottom: 30px;
+}
+.summryItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.net{
+    border-top:1px solid #ccc;
 }
