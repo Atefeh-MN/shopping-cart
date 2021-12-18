@@ -1,4 +1,4 @@
-import { checkIncart } from '../components/functions/checkInOut';
+import { checkIncart } from '../components/common/checkInOut';
 import { useCart, useCartActions } from '../context/provider/CartProvider';
 import * as data from '../data';
 import { toast } from 'react-toastify';

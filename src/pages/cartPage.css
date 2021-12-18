@@ -85,3 +85,22 @@ width: 100%;
 .net{
     border-top:1px solid #ccc;
 }
+.btnGroup button{
+    outline: none ;
+    border: 1px solid #0d9488;
+    color: #0d9488;
+    padding: 5px 10px;
+    background-color: #fff;
+
+}
+.btnGroup button:first-child{
+    border-radius: 5px 0 0 5px;
+}
+.btnGroup button:last-child{
+    border-radius: 0 5px 5px 0;
+}
+.btnGroup button:nth-child(2){
+    border-left: 0px;
+    border-right: 0px;
+    font-size: 1.4em;
+}

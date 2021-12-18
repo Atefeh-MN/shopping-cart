@@ -1,6 +1,7 @@
 import { useCart, useCartActions } from "../context/provider/CartProvider";
 import './cartPage.css'
 import {MdOutlineAdd,MdOutlineRemove } from "react-icons/md"
+import { Link } from "react-router-dom";
 const CartPage = () => {
     const { cart,total } = useCart();
     const dispatch = useCartActions();
@@ -39,7 +40,7 @@ const CartPage = () => {
                     <div>
                     <h2>{item.name}</h2>
                     </div>
-                    <div>
+                    <div className="btnGroup">
                         <button onClick={()=>decHandler(item)} ><MdOutlineRemove/></button>
                         <button >{ item.quantity}</button>
                         <button onClick={()=>incHandler(item)} ><MdOutlineAdd/></button>
@@ -70,17 +71,18 @@ const CartSummry = ({ total, cart }) => {
     return( <section className="cartSummry">
                 <h1>Cart Summry</h1>
                 <div className="summryItem">
-                <p> cart Total</p>
+                <p>Subtotal</p>
                 <p>{originalTotalPrice} $</p>
         </div>
         <div className="summryItem">
-           <p>cart discount</p>
+           <p>Promo</p>
            <p>{originalTotalPrice - total} $</p> 
         </div>
         <div className="summryItem net">
-            <p> net price</p>
+            <p>Order Total</p>
                 <p>{total} $</p>
         </div>
-        <button className="btn primry">Continue</button>
+        <Link to ='/checkout'> <button className="btn primry" style={{marginTop:'30px',width:'100%'}}>Go to checkout</button></Link>
+       
             </section>)
 }
