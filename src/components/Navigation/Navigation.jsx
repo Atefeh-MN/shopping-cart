@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import './Navigation.css';
 import { RiShoppingCartLine,RiAccountCircleLine} from "react-icons/ri"
-import { useCart } from '../context/provider/CartProvider';
+import { useCart } from '../../context/provider/CartProvider';
 
 const items = [{ name: 'Home', to: '/' }, { name: 'Shop', to: '/' }, { name:'blog',to:'/blog'} ];
 

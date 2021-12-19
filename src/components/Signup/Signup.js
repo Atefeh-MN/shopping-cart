@@ -1,8 +1,8 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import Input from '../common/Input';
-import RadioInput from '../common/RadioInput';
-import BooleanInput from '../common/BooleanInput';
+import Input from '../../common/Input';
+import RadioInput from '../../common/RadioInput';
+import BooleanInput from '../../common/BooleanInput';
 import './signup.css';
 import { Link } from 'react-router-dom';
 

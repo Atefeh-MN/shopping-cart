@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import Input from '../common/Input';
+import Input from '../../common/Input';
 import './login.css'
 
 const initialValues = {
