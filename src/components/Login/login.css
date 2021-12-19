@@ -1,14 +1,29 @@
-.formContainer{
-display: flex;
-justify-content: center;
-margin-top: 30px;
-}
+.loginContainer{
 
+margin: 20px auto;
+border:1px solid #ccc;
+border-radius: 5px;
+padding: 20px;
+width: 35%;
+}
+.formContainer{
+ display: flex;
+align-items: center;
+justify-content: center; 
+}
+.titleLog{
+margin: 20px 30px;
+
+}
+.titleLog h2{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+ color: #0d9488;
+}
 
 label{
   display: flex;
   margin: 5px;
-  font-weight: 800;
     font-size: 1.2em;
 }
 .formControl{
@@ -19,7 +34,7 @@ input+label{
   font-weight: bold;
   margin-right: 7px;
   margin-left: 7px;
-  font-size: 1.4em;
+  font-size: 1.2em;
 }
 input[type="text"],input[type='tel'],input[type='email'],input[type='password'],select{
   width: 400px;

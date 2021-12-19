@@ -2,10 +2,12 @@ import { NavLink } from 'react-router-dom'
 import './Navigation.css';
 import { RiShoppingCartLine,RiAccountCircleLine} from "react-icons/ri"
 import { useCart } from '../../context/provider/CartProvider';
+import { useAuth } from '../../context/provider/AuthProvider';
 
-const items = [{ name: 'Home', to: '/' }, { name: 'Shop', to: '/' }, { name:'blog',to:'/blog'} ];
+const items = [{ name: 'Home', to: '/' }, { name: 'Shop', to: '/shop' }, { name:'blog',to:'/blog'} ];
 
 const Navigation = () => {
+    const userData = useAuth();
     const { cart } = useCart();
     return ( 
         <header className='mainNav'>
@@ -18,8 +20,9 @@ const Navigation = () => {
 
                 <ul className='Bar'>
                      <li  key='user'>
-                        <NavLink to='/user' className={(navData) => navData.isActive ? "activeBar": ""}>
-                         <RiAccountCircleLine className='user'/>
+                        <NavLink to={userData ? '/profile' : '/login'} className={(navData) => navData.isActive ? "activeBar": ""}>
+                          {userData ? <RiAccountCircleLine className='user' />: 'LogIn'} 
+                        
                         </NavLink>
                     </li>
                  <li key='/cart' >
