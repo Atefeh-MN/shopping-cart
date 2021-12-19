@@ -1,12 +1,12 @@
 import { useFormik } from 'formik';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link,useNavigate, useSearchParams } from 'react-router-dom';
 import * as yup from 'yup';
 import Input from '../../common/Input';
 import './login.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { LoginUser } from '../../services/Loginservice';
 import ToastComp from '../../common/ToastComp';
-import { useAuthActions } from '../../context/provider/AuthProvider';
+import { useAuthActions,useAuth } from '../../context/provider/AuthProvider';
 
 const initialValues = {
     email: '',
@@ -21,17 +21,22 @@ const validationSchema = yup.object({
 });
 
 const LoginForm = () => {
+    const [searchParams] = useSearchParams();
+    const redirect = searchParams.get('redirect') || '/';
+    ;
     const setAuth = useAuthActions();
     let navigate = useNavigate();
     const [error, setError] = useState(null);
-
+    const auth = useAuth();
+    useEffect(() => {
+        if (auth) navigate('/');
+    }, [redirect, auth])
     const onSubmit = async (values) => {
 
         try {
             const { data } = await LoginUser(values);
-            setAuth(data)
-            // localStorage.setItem('authUser', JSON.stringify(data));
-            navigate('/')
+            setAuth(data);
+            navigate(redirect)
             setError(null)
         } catch (error) {
             if (error.response && error.response.data.message) {
@@ -47,23 +52,24 @@ const LoginForm = () => {
         <div className='loginContainer'>
             <div className='titleLog'>
                 <h2>Login</h2>
-                <Link to='/signup'>
-                    <p style={{ margin: '3px' }}>Don't have an account? <span style={{ color:'#0d9488'}}>Sign up</span></p>
-                </Link>
             </div>
             <div className='formContainer'>
            
                 <form onSubmit={formik.handleSubmit}>
                     
-                <Input formik={formik} label='Email' name='email' type='email' />
-                <Input formik={formik} label='Password' name='password'type='password' />
-                <button className='btn primary' style={{ width: '100%' }} type='submit' disabled={!formik.isValid}>Log In</button>
-                <ToastComp error={error} />
+                    <Input formik={formik} label='Email' name='email' type='email' />
+                    <Input formik={formik} label='Password' name='password' type='password' />
+                    <button className='btn primary' style={{ width: '100%' }} type='submit' disabled={!formik.isValid}>Log In</button>
+                    <ToastComp error={error} />
+                    <Link to={`/signup?redirect=${redirect}`} >
+                        <p style={{ margin: '3px' }}>Don't have an account?
+                            <span style={{ color: '#0d9488' }}>Sign up</span>
+                        </p>
+                    </Link>
               
-            </form>
-
+                </form>
             </div>
-        </div>);
+        </div>)
 }
  
 export default LoginForm;

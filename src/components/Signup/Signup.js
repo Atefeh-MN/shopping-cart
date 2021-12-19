@@ -4,11 +4,12 @@ import Input from '../../common/Input';
 import RadioInput from '../../common/RadioInput';
 import BooleanInput from '../../common/BooleanInput';
 import './signup.css';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link,useNavigate, useSearchParams } from 'react-router-dom';
 import { signupUser } from '../../services/SignupService';
-import { useState } from 'react';
-import ToastComp from '../../common/ToastComp';import { useAuthActions } from '../../context/provider/AuthProvider';
-;
+import { useEffect, useState } from 'react';
+import ToastComp from '../../common/ToastComp';
+import { useAuth, useAuthActions } from '../../context/provider/AuthProvider';
+
 
 
 const initialValues = {
@@ -37,12 +38,16 @@ const validationSchema = yup.object({
 });
 
 const SingupForm = () => {
-    
-    let navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const redirect = searchParams.get('redirect') || '/';
+    const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
     const setAuth = useAuthActions();
-   
+    const auth = useAuth();
+    useEffect(() => {
+        if (auth) navigate(redirect);
+   },[redirect,auth])
     const onSubmit = async (values) => {
        
     const { name, password, email, phoneNumber } = values;
@@ -52,8 +57,7 @@ const SingupForm = () => {
         try {
             const { data } = await signupUser(userData);
             setAuth(data)
-            // localStorage.setItem('authUser', JSON.stringify(data));
-            navigate('/')
+            navigate(redirect)
             setSuccess(true);
         } catch (error) {
             if (error.response && error.response.data.message) {
@@ -81,7 +85,7 @@ const SingupForm = () => {
                 <BooleanInput formik={formik} name='terms' label='Terms and conditions' />
                 <button className='btn primary' style={{ width: '100%' }} type='submit' disabled={!formik.isValid}>Register</button>
                 <ToastComp error={error} success={success}/>
-                <Link to='/login'>
+                    <Link to={`/login?redirect=${redirect}`}>
                     <p style={{ marginTop: '15px' }}>Already login?</p>
                 </Link>
             </form>
