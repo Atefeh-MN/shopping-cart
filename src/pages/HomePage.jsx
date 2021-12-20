@@ -2,7 +2,7 @@ import { checkIncart } from '../common/checkIn';
 import { useCart, useCartActions } from '../context/provider/CartProvider';
 import * as data from '../data';
 import { toast } from 'react-toastify';
-const Home = () => {
+const HomePage = () => {
     const { cart } = useCart();
     const dispatch = useCartActions();
     const addCartHandler = (product) => {
@@ -31,4 +31,4 @@ const Home = () => {
      );
 }
  
-export default Home;
+export default HomePage;

@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { Link,useNavigate, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import Input from '../../common/Input';
 import './login.css';
@@ -7,6 +7,8 @@ import { useState,useEffect } from 'react';
 import { LoginUser } from '../../services/Loginservice';
 import ToastComp from '../../common/ToastComp';
 import { useAuthActions,useAuth } from '../../context/provider/AuthProvider';
+import { useQuery } from '../../hooks/useQueryParams';
+import { withRouter } from 'react-router-dom';
 
 const initialValues = {
     email: '',
@@ -20,23 +22,29 @@ const validationSchema = yup.object({
         .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
 });
 
-const LoginForm = () => {
-    const [searchParams] = useSearchParams();
-    const redirect = searchParams.get('redirect') || '/';
-    ;
+const LoginForm = ({history}) => {
+//    const [searchParams] = useSearchParams();
+//    const redirect = searchParams.get('redirect') || '/';
+    // console.log(redirect('/',1))
+    // const query = useQuery();
+    // let redirect=query.get('redirect')
+    // const location = useLocation()
+    // const redirect = location.search.split('=', 2)[1] 
+    const query = useQuery();
+    const redirect = query.get("redirect") || "/";
     const setAuth = useAuthActions();
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
     const [error, setError] = useState(null);
     const auth = useAuth();
-    useEffect(() => {
-        if (auth) navigate('/');
+    useEffect(({history}) => {
+        if (auth) history.push(redirect);
     }, [redirect, auth])
     const onSubmit = async (values) => {
 
         try {
             const { data } = await LoginUser(values);
             setAuth(data);
-            navigate(redirect)
+            history.push(redirect);
             setError(null)
         } catch (error) {
             if (error.response && error.response.data.message) {
@@ -72,4 +80,4 @@ const LoginForm = () => {
         </div>)
 }
  
-export default LoginForm;
+export default withRouter(LoginForm);

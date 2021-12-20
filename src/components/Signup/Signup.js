@@ -4,11 +4,13 @@ import Input from '../../common/Input';
 import RadioInput from '../../common/RadioInput';
 import BooleanInput from '../../common/BooleanInput';
 import './signup.css';
-import { Link,useNavigate, useSearchParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { signupUser } from '../../services/SignupService';
 import { useEffect, useState } from 'react';
 import ToastComp from '../../common/ToastComp';
 import { useAuth, useAuthActions } from '../../context/provider/AuthProvider';
+import { useQuery } from '../../hooks/useQueryParams';
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -37,17 +39,23 @@ const validationSchema = yup.object({
 
 });
 
-const SingupForm = () => {
-    const [searchParams] = useSearchParams();
-    const redirect = searchParams.get('redirect') || '/';
-    const navigate = useNavigate();
+const SingupForm = ({history}) => {
+    // const [searchParams] = useSearchParams();
+    // // const location = useLocation()
+    // // const redirect = location.search.split('=',2)[1]
+    // const redirect = searchParams.get('redirect')||'/';
+    // // const query = useQuery();
+    // // let redirect = query.get('redirect')
+    const query = useQuery();
+    const redirect = query.get("redirect") || "/";
+    // const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
     const setAuth = useAuthActions();
     const auth = useAuth();
-    useEffect(() => {
-        if (auth) navigate(redirect);
-   },[redirect,auth])
+    useEffect(({history}) => {
+        if (auth) history.push(redirect);
+    },[redirect,auth])
     const onSubmit = async (values) => {
        
     const { name, password, email, phoneNumber } = values;
@@ -57,7 +65,7 @@ const SingupForm = () => {
         try {
             const { data } = await signupUser(userData);
             setAuth(data)
-            navigate(redirect)
+            history.push(redirect);
             setSuccess(true);
         } catch (error) {
             if (error.response && error.response.data.message) {
@@ -94,4 +102,4 @@ const SingupForm = () => {
         </div>);
 }
 
-export default SingupForm;
+export default withRouter(SingupForm) ;
