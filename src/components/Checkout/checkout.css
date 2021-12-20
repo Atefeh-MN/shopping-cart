@@ -1,0 +1,50 @@
+.checkoutContainer{
+    display: flex;
+    justify-content: center;
+    width: 90vw;
+    max-width: 1170px;
+    margin-top: 30px;
+}
+
+.userdata {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+   padding: 1rem;
+   font-size: 1rem;
+   flex: 1;
+
+}
+.userItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     border-bottom: 1px solid #ccc;
+     width: 100%;
+}
+.summry{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+     padding: 1rem;
+     width: 30%;
+     margin-left: 1rem;
+     font-size: 1.1rem;
+
+}
+.summry h1{
+    margin-bottom: 30px;
+}
+.summryItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.net{
+    border-top:1px solid #ccc;
+}

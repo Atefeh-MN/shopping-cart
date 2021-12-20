@@ -103,4 +103,5 @@ width: 100%;
     border-left: 0px;
     border-right: 0px;
     font-size: 1.4em;
+    border-radius: none !important;
 }

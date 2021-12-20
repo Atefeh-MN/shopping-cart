@@ -14,19 +14,19 @@ const Navigation = () => {
             <nav>
                 <ul>
                     {items.map(item => <li key={item.to} >
-                        <NavLink to={item.to} className={(navData)=>navData.isActive?'activeLink':""}>{item.name}</NavLink>
+                        <NavLink to={item.to} activeClassName='activeLink'>{item.name}</NavLink>
                     </li>)}
                 </ul>
 
                 <ul className='Bar'>
                      <li  key='user'>
-                        <NavLink to={userData ? '/profile' : '/login'} className={(navData) => navData.isActive ? "activeBar": ""}>
+                        <NavLink to={userData ? '/profile' : '/login'} activeClassName='activeBar'>
                           {userData ? <RiAccountCircleLine className='user' />: 'LogIn'} 
                         
                         </NavLink>
                     </li>
                  <li key='/cart' >
-                        <NavLink to='/cart' className={(navData) => navData.isActive ? 'activeBar': ""}>
+                        <NavLink to='/cart' activeClassName='activeBar'>
                             <RiShoppingCartLine />
                             <span>{cart.length}</span>
                         

@@ -23,20 +23,12 @@ const validationSchema = yup.object({
 });
 
 const LoginForm = ({history}) => {
-//    const [searchParams] = useSearchParams();
-//    const redirect = searchParams.get('redirect') || '/';
-    // console.log(redirect('/',1))
-    // const query = useQuery();
-    // let redirect=query.get('redirect')
-    // const location = useLocation()
-    // const redirect = location.search.split('=', 2)[1] 
     const query = useQuery();
     const redirect = query.get("redirect") || "/";
     const setAuth = useAuthActions();
-    // let navigate = useNavigate();
     const [error, setError] = useState(null);
     const auth = useAuth();
-    useEffect(({history}) => {
+    useEffect(() => {
         if (auth) history.push(redirect);
     }, [redirect, auth])
     const onSubmit = async (values) => {
